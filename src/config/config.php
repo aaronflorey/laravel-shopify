@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'url' => '',
+    'url' => 'laravel.myshopify.com',
     'apikey'=>'',
     'password'=>''
 );

@@ -1,23 +1,21 @@
 {
     "name": "mochaka/shopify",
-    "description": "",
+    "description": "Shopify interaction for Laravel",
+	"tags": ["shopify", "laravel"],
     "authors": [
         {
-            "name": "Aaron Florey",
+            "name": "Mochaka",
             "email": "azza@jcaks.net"
         }
     ],
     "require": {
         "php": ">=5.3.0",
-		"guzzlehttp/guzzle": "4.*",
-        "illuminate/support": "4.1.*"
+        "illuminate/support": "4.1.*",
+		"guzzlehttp/guzzle": "3.8.x"
     },
     "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
         "psr-0": {
-            "Mochaka\\Shopify\\": "src/"
+            "Mochaka\\Shopify": "src/"
         }
     },
     "minimum-stability": "stable"

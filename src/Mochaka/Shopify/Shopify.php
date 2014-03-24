@@ -96,6 +96,16 @@ class Shopify {
     }
 
     /**
+     * Delete's a product from shopify
+     * @param  int $productId
+     * @return array
+     */
+    public function deleteProduct($productId)
+    {
+        return $this->makeRequest('DELETE', 'products/'.$productId.'.json');
+    }
+
+    /**
      * updates a specific variant by id
      * @param  int $variantId
      * @param  array $data
@@ -106,5 +116,16 @@ class Shopify {
         $data['id'] = $variantId;
         $d['variant'] = (!isset($data['variant'])) ? $data : $data['variant'];
         return $this->makeRequest('PUT', 'variants/'.$variantId.'.json', $d);
+    }
+
+    /**
+     * Delete's a variant from shopify
+     * @param  int $productId
+     * @param  int $variantId
+     * @return array
+     */
+    public function deleteVariant($productId, $variantId)
+    {
+        return $this->makeRequest('DELETE', 'admin/products/'.$productId.'/variants/'.$variantId.'.json');
     }
 }

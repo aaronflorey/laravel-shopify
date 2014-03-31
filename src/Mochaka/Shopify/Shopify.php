@@ -128,4 +128,24 @@ class Shopify {
     {
         return $this->makeRequest('DELETE', 'admin/products/'.$productId.'/variants/'.$variantId.'.json');
     }
+
+    /**
+     * get a list of webhooks
+     * @return array
+     */
+    public function getWebhooks()
+    {
+        return $this->makeRequest('GET', '/admin/webhooks.json');
+    }
+
+    /**
+     * create a webhook
+     * @param  array $data
+     * @return array
+     */
+    public function createWebhook($data)
+    {
+        $d['webhook'] = (!isset($data['webhook'])) ? $data : $data['webhook'];
+        return $this->makeRequest('POST', '/admin/webhooks.json', $d);
+    }
 }

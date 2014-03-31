@@ -44,7 +44,9 @@ class Shopify {
     {
 
         $r =  $this->client->createRequest($method, $page, null, $data);
-        $r->setBody(json_encode($data), 'application/json');
+        if($data)
+            $r->setBody(json_encode($data), 'application/json');
+
         try {
             return $r->send()->json();
         } catch (Guzzle\Http\Exception\BadResponseException $e) {

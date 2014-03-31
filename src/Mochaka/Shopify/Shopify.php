@@ -49,6 +49,8 @@ class Shopify {
             return $r->send()->json();
         } catch (Guzzle\Http\Exception\BadResponseException $e) {
             return ['error'=>$e->getMessage(), 'url'=>$e->getRequest()->getUrl(), 'request'=>$e->getRequest(), 'status'=>$e->getResponse()->getStatusCode(), 'response'=>$e->getResponse()];
+        } catch (Guzzle\Http\Exception\ClientErrorResponseException $e) {
+            return ['error'=>$e->getMessage(), 'url'=>$e->getRequest()->getUrl(), 'request'=>$e->getRequest(), 'status'=>$e->getResponse()->getStatusCode(), 'response'=>$e->getResponse()];
         }
 
     }

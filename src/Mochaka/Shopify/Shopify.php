@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\ClientErrorResponseException;
 
 class Shopify {
 
-	/**
+    /**
      * Guzzle Client
      *
      * @var object
@@ -25,12 +25,12 @@ class Shopify {
     public function __construct($domain, $key, $password)
     {
         $url = "https://".$key.":".$password."@".$domain."/admin/";
-		$this->client = new Client(
-		    $url,
-		    ['defaults' => [
-		        'headers' => ['Content-Type' => 'application/json'],
-		    ]]
-		);
+        $this->client = new Client(
+            $url,
+            ['defaults' => [
+                'headers' => ['Content-Type' => 'application/json'],
+            ]]
+        );
     }
 
     /**
@@ -110,6 +110,16 @@ class Shopify {
     }
 
     /**
+     * search products - see http://docs.shopify.com/api/product#index for search options
+     * @param  array $search
+     * @return array
+     */
+    public function searchProduct($search)
+    {
+        return $this->makeRequest('GET', 'products.json?'.http_build_query($search));
+    }
+
+    /**
      * updates a specific variant by id
      * @param  int $variantId
      * @param  array $data
@@ -130,7 +140,7 @@ class Shopify {
      */
     public function deleteVariant($productId, $variantId)
     {
-        return $this->makeRequest('DELETE', 'admin/products/'.$productId.'/variants/'.$variantId.'.json');
+        return $this->makeRequest('DELETE', 'products/'.$productId.'/variants/'.$variantId.'.json');
     }
 
     /**
@@ -139,7 +149,7 @@ class Shopify {
      */
     public function getWebhooks()
     {
-        return $this->makeRequest('GET', '/admin/webhooks.json');
+        return $this->makeRequest('GET', 'webhooks.json');
     }
 
     /**
@@ -150,6 +160,6 @@ class Shopify {
     public function createWebhook($data)
     {
         $d['webhook'] = (!isset($data['webhook'])) ? $data : $data['webhook'];
-        return $this->makeRequest('POST', '/admin/webhooks.json', $d);
+        return $this->makeRequest('POST', 'webhooks.json', $d);
     }
 }

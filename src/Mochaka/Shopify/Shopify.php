@@ -162,4 +162,13 @@ class Shopify {
         $d['webhook'] = (!isset($data['webhook'])) ? $data : $data['webhook'];
         return $this->makeRequest('POST', 'webhooks.json', $d);
     }
+
+    /**
+     * get a list of all customers in shopify
+     * @return array
+     */
+    public function getAllCustomers()
+    {
+        return $this->makeRequest('GET', 'customers.json');
+    }
 }

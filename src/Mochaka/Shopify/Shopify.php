@@ -44,8 +44,14 @@ class Shopify {
     {
 
         $r =  $this->client->createRequest($method, $page, null, $data);
-        if($data)
-            $r->setBody(json_encode($data), 'application/json');
+        
+        if($data && $method != 'GET') $r->setBody(json_encode($data), 'application/json');
+        
+        if($method == 'GET' && !empty($data))
+        {
+            $query = $request->getQuery();
+            foreach($data as $key=>$val) $query->set($key, $val);
+        }
 
         try {
             return $r->send()->json();

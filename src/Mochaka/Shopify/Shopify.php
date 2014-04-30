@@ -49,7 +49,7 @@ class Shopify {
         
         if($method == 'GET' && !empty($data))
         {
-            $query = $request->getQuery();
+            $query = $r->getQuery();
             foreach($data as $key=>$val) $query->set($key, $val);
         }
 

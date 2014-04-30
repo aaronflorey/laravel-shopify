@@ -126,16 +126,6 @@ class Shopify {
     }
 
     /**
-     * search products - see http://docs.shopify.com/api/product#index for search options
-     * @param  array $search
-     * @return array
-     */
-    public function searchProduct($search)
-    {
-        return $this->makeRequest('GET', 'products.json?'.http_build_query($search));
-    }
-
-    /**
      * updates a specific variant by id
      * @param  int $variantId
      * @param  array $data

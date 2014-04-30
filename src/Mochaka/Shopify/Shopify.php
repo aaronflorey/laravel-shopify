@@ -65,6 +65,16 @@ class Shopify {
     {
         return $this->makeRequest('GET', 'products/count.json');
     }
+    
+    /**
+     * returns a list of products, depending on the input data
+     * @param  array $data
+     * @return array
+     */
+    public function getProducts($data)
+    {
+        return $this->makeRequest('GET', 'products.json', $data);
+    }
 
     /**
      * returns product information by id

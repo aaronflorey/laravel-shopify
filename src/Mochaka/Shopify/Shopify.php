@@ -177,4 +177,15 @@ class Shopify {
     {
         return $this->makeRequest('GET', 'customers.json');
     }
+
+    /**
+     * creates an order on shopify
+     * @param $data
+     * @return array
+     */
+    public function createOrder($data)
+    {
+        $d['order'] = (!isset($data['order'])) ? $data : $data['order'];
+        return $this->makeRequest('POST', 'orders.json', $d);
+    }
 }

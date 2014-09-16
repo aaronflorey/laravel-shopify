@@ -6,7 +6,6 @@
     use Guzzle\Http\Exception\ClientErrorResponseException;
     use Guzzle\Http\Exception\BadResponseException;
 
-
     class Shopify
     {
 
@@ -43,9 +42,10 @@
          * @param  string $method
          * @param  string $page
          * @param  array  $data
+         *
          * @return array
          */
-        private function makeRequest($method, $page, $data = array())
+        private function makeRequest($method, $page, $data = [])
         {
 
             $r = $this->client->createRequest($method, $page, null, $data);
@@ -65,13 +65,14 @@
                 return $r->send()
                          ->json();
             } catch (ClientErrorResponseException $e) {
-                return ['error'    => $e->getMessage(),
-                        'url'      => $e->getRequest()
-                                        ->getUrl(),
-                        'request'  => $e->getRequest(),
-                        'status'   => $e->getResponse()
-                                        ->getStatusCode(),
-                        'response' => $e->getResponse()
+                return [
+                    'error'    => $e->getMessage(),
+                    'url'      => $e->getRequest()
+                                    ->getUrl(),
+                    'request'  => $e->getRequest(),
+                    'status'   => $e->getResponse()
+                                    ->getStatusCode(),
+                    'response' => $e->getResponse()
                 ];
 
             } catch (BadResponseException $e) {
@@ -102,6 +103,7 @@
          * returns a list of products, depending on the input data
          *
          * @param  array $data
+         *
          * @return array
          */
         public function getProducts($data)
@@ -113,6 +115,7 @@
          * returns product information by id
          *
          * @param  int $productId
+         *
          * @return array
          */
         public function getProductById($productId)
@@ -124,6 +127,7 @@
          * creates a product on shopify
          *
          * @param  array $data
+         *
          * @return array
          */
         public function createProduct($data)
@@ -137,6 +141,7 @@
          *
          * @param  int   $productId
          * @param  array $data
+         *
          * @return array
          */
         public function updateProduct($productId, $data)
@@ -149,6 +154,7 @@
          * Delete's a product from shopify
          *
          * @param  int $productId
+         *
          * @return array
          */
         public function deleteProduct($productId)
@@ -161,6 +167,7 @@
          *
          * @param  int   $variantId
          * @param  array $data
+         *
          * @return array
          */
         public function updateVariant($variantId, $data)
@@ -175,6 +182,7 @@
          *
          * @param  int $productId
          * @param  int $variantId
+         *
          * @return array
          */
         public function deleteVariant($productId, $variantId)
@@ -196,6 +204,7 @@
          * create a webhook
          *
          * @param  array $data
+         *
          * @return array
          */
         public function createWebhook($data)
@@ -218,11 +227,25 @@
          * creates an order on shopify
          *
          * @param $data
+         *
          * @return array
          */
         public function createOrder($data)
         {
             $d['order'] = (!isset($data['order'])) ? $data : $data['order'];
             return $this->makeRequest('POST', 'orders.json', $d);
+        }
+
+        /**
+         * Receives a list of orders
+         *
+         * @param $data
+         *
+         * @return array
+         */
+        public function getOrders($data)
+        {
+            $d['order'] = (!isset($data['order'])) ? $data : $data['order'];
+            return $this->makeRequest('GET', 'orders.json', $d);
         }
     }

@@ -245,7 +245,6 @@
          */
         public function getOrders($data = [])
         {
-            $d['order'] = (!isset($data['order'])) ? $data : $data['order'];
-            return $this->makeRequest('GET', 'orders.json', $d);
+            return $this->makeRequest('GET', 'orders.json', $data);
         }
     }

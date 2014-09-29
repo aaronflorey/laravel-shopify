@@ -178,6 +178,20 @@
         }
 
         /**
+         * creates a variant for the specific shopify id
+         * 
+         * @param $shopifyId
+         * @param $data
+         *
+         * @return array
+         */
+        public function createVariant($shopifyId, $data)
+        {
+            $d['variant'] = (!isset($data['variant'])) ? $data : $data['variant'];
+            return $this->makeRequest('POST', 'products/' . $shopifyId . '/variants.json', $d);
+        }
+
+        /**
          * Delete's a variant from shopify
          *
          * @param  int $productId

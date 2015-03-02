@@ -261,4 +261,16 @@
         {
             return $this->makeRequest('GET', 'orders.json', $data);
         }
+        
+        /**
+         * Receives a single order
+         *
+         * @param int $id
+         *
+         * @return array
+         */
+        public function getOrders($id)
+        {
+            return $this->makeRequest('GET', 'orders/' . $id . '.json', $data);
+        }
     }

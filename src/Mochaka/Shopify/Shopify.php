@@ -269,7 +269,7 @@
          *
          * @return array
          */
-        public function getOrders($id)
+        public function getOrder($id)
         {
             return $this->makeRequest('GET', 'orders/' . $id . '.json', $data);
         }

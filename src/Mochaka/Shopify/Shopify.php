@@ -2,9 +2,9 @@
 
     namespace Mochaka\Shopify;
 
-    use Guzzle\Http\Client;
-    use Guzzle\Http\Exception\ClientErrorResponseException;
-    use Guzzle\Http\Exception\BadResponseException;
+    use GuzzleHttp\Client;
+    use GuzzleHttp\Exception\ClientException;
+    use GuzzleHttp\Exception\BadResponseException;
 
     class Shopify
     {
@@ -27,8 +27,8 @@
         {
             $url          = "https://" . $key . ":" . $password . "@" . $domain . "/admin/";
             $this->client = new Client(
-                $url,
                 [
+                    'base_url' => $url,
                     'defaults' => [
                         'headers' => ['Content-Type' => 'application/json'],
                     ]
@@ -64,7 +64,7 @@
             try {
                 return $r->send()
                          ->json();
-            } catch (ClientErrorResponseException $e) {
+            } catch (ClientException $e) {
                 return [
                     'error'    => $e->getMessage(),
                     'url'      => $e->getRequest()

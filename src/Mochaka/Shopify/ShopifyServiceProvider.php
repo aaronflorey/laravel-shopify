@@ -21,8 +21,11 @@ class ShopifyServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('mochaka/shopify');
+		$this->publishes([
+			__DIR__.'/../../config/config.php' => config_path('shopify.php'),
+		]);
 	}
+
 
 	/**
 	 * Register the service provider.
@@ -39,7 +42,7 @@ class ShopifyServiceProvider extends ServiceProvider {
 
         $this->app['shopify'] = $this->app->share(function($app)
         {
-            return new Shopify(Config::get('shopify::url'),Config::get('shopify::apikey'),Config::get('shopify::password'));
+            return new Shopify(Config::get('shopify.url'),Config::get('shopify.apikey'),Config::get('shopify.password'));
         });
 	}
 

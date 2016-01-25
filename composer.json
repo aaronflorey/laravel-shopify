@@ -1,7 +1,7 @@
 {
     "name": "mochaka/laravel-shopify",
-    "description": "Shopify interaction for Laravel",
-    "keywords": ["shopify", "laravel"],
+    "description": "Shopify interaction for Laravel5",
+    "keywords": ["shopify", "laravel", "laravel5"],
     "license": "MIT",
     "authors": [
         {
@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "~4",
-        "guzzlehttp/guzzle": "~4"
+        "illuminate/support": "~5",
+        "nategood/httpful": "*"
     },
     "autoload": {
         "psr-0": {

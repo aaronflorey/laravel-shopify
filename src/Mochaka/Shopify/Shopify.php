@@ -37,7 +37,7 @@ class Shopify
      *
      * @return array
      */
-    private function makeRequest($method, $page, $data = [])
+    public function makeRequest($method, $page, $data = [])
     {
         $url = $this->url . "/" . $page;
 

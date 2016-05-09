@@ -97,12 +97,21 @@ class Shopify
      */
     public function getProductById($productId)
     {
-        return $this->makeRequest('GET', 'products/' . $productId . '.json')['product'];
+        $data = $this->makeRequest('GET', 'products/' . $productId . '.json');
+        return isset($data['product']) ? $data['product'] : $data;
     }
 
+    /**
+     * returns variant information by id
+     *
+     * @param  int $productId
+     *
+     * @return array
+     */
     public function getVariantById($productId)
     {
-        return $this->makeRequest('GET', 'variants/' . $productId . '.json')['variant'];
+        $data = $this->makeRequest('GET', 'variants/' . $productId . '.json');
+        return isset($data['variant']) ? $data['variant'] : $data;
     }
 
     /**
